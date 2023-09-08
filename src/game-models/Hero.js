@@ -1,8 +1,9 @@
-// Наш герой.
+const funk = require('../../aftor')
 
+//console.log(funk,'-----')
 class Hero {
-  constructor({ position }) {
-    this.skin = '🤠'; // можете использовать любые emoji '💃'
+  constructor({ position,skin }) {
+    this.skin = funk[1]
     this.position = position;
   }
 
@@ -13,7 +14,7 @@ class Hero {
 
   moveRight() {
     // Идём вправо.
-    this.position += 1;
+    //this.position += 1;
   }
 
   attack() {

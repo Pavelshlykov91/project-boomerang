@@ -4,8 +4,14 @@
 
 class Boomerang {
   constructor() {
-    this.skin = '🌀';
+    this.generate()
+  
     this.position = 0;
+  }
+
+  generate(){
+    const skins = ['💉','🪓','📌','✂️'];
+    this.skin = skins[Math.floor(Math.random() * skins.length)];
   }
 
   fly() {
@@ -15,7 +21,7 @@ class Boomerang {
 
   moveLeft() {
     // Идём влево.
-    this.position -= 1;
+    this.position = 1;
   }
 
   moveRight() {
