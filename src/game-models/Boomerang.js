@@ -4,8 +4,10 @@
 
 class Boomerang {
   constructor() {
+
     this.generate()
   
+
     this.position = 0;
   }
 
@@ -21,12 +23,14 @@ class Boomerang {
 
   moveLeft() {
     // Идём влево.
-    this.position = 1;
+
+    this.position -= 2;
+
   }
 
   moveRight() {
     // Идём вправо.
-    this.position += 1;
+    this.position += 2;
   }
 }
 
