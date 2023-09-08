@@ -1,7 +1,7 @@
 // Импортируем всё необходимое.
 // Или можно не импортировать,
 // а передавать все нужные объекты прямо из run.js при инициализации new Game().
-
+const {EOL} = require('os')
 const Hero = require("./game-models/Hero");
 const Enemy = require("./game-models/Enemy");
 const Boomerang = require("./game-models/Boomerang");
@@ -14,22 +14,26 @@ const { log } = require("console");
 
 class Game {
   constructor({ trackLength }) {
-    this.trackLength = trackLength;
+    this.trackLength = trackLength; 
+   
     this.hero = new Hero({ position: 0 }); // Герою можно аргументом передать бумеранг.
+
     this.enemy = new Enemy({ position: 30 });
     this.enemy1 = new Enemy({ position: 30 });
     this.enemy2 = new Enemy({ position: 30 });
     this.enemy3 = new Enemy({ position: 30 });
     this.enemy4 = new Enemy({ position: 30 });
+
     this.boomerang = new Boomerang({ position: 1 });
     this.view = new View(this);
-    this.track = [];
-    // this.regenerateTrack(1000);
+   
+    this.regenerateTrack();
   }
 
   regenerateTrack() {
     // Сборка всего необходимого (герой, враг(и), оружие)
     // в единую структуру данных
+
     this.track = new Array(5); // 5 - количество строк игрового поля
     for (let i = 0; i < 5; i++) {
       this.track[i] = new Array(this.trackLength).fill(" ");
@@ -73,6 +77,7 @@ class Game {
       }
     }
     return heroRow;
+
   }
 
   check() {
@@ -81,10 +86,13 @@ class Game {
       this.hero.die();
     } else if (this.boomerang.position === this.enemy.position) {
       this.enemy.die();
-    } else if (this.boomerang.position === this.hero.position) {
-      console.log("YOU WIN!", checkIndex);
+
+    }else if (this.boomerang.position === this.hero.position) {
+      console.log("YOU WIN!");
+
       process.exit();
-    }
+   }
+
   }
 
   play() {
@@ -93,6 +101,7 @@ class Game {
 
       if (this.enemy.position > this.boomerang.position) {
         this.boomerang.moveRight();
+
       } else {
         this.boomerang.moveLeft();
       }
@@ -106,6 +115,7 @@ class Game {
       this.regenerateTrack();
       this.view.render(this.track);
     }, 450);
+
   }
 }
 
